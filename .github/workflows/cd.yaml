@@ -20,6 +20,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            git clone https://github.com/jainikhs/github-actions-skillpulse.git
             cd ~/github-actions-skillpulse
             git pull origin main
             docker compose pull
