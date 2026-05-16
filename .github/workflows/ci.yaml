@@ -3,10 +3,24 @@ name: CI Worflows
 on:
   push:
 jobs:
-  build:
+  build-and-Push:
     runs-on: ubuntu-latest
     steps:
       - name: checkout the code
         uses: actions/checkout@v4
+
       - name: setup docker
         uses: docker/setup-buildx-action@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: push to Dockerhub
+        uses: docker/build-push-action@v7
+        with:
+          context: ./backend
+          push: true
+          tag: ${{ secrets.DOCKERHUB_USERNAME }}/skillpulse-githubactions:niks
