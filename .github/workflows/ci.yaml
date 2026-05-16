@@ -23,4 +23,4 @@ jobs:
         with:
           context: ./backend
           push: true
-          tag: ${{ secrets.DOCKERHUB_USERNAME }}/skillpulse-githubactions:niks
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/skillpulse-githubactions:niks
